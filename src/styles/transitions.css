@@ -1,0 +1,323 @@
+/**
+ * Smooth transitions for modals and cart items
+ * Implements Requirement 11.5: Smooth transitions for modals and cart items
+ */
+
+/* ============================================================================
+ * Modal/Dialog Fade In/Out Animations
+ * ============================================================================ */
+
+/* Backdrop fade in */
+@keyframes backdrop-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Backdrop fade out */
+@keyframes backdrop-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Modal slide in from right */
+@keyframes modal-slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Modal slide out to right */
+@keyframes modal-slide-out-right {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Modal fade in (for center modals) */
+@keyframes modal-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Modal fade out (for center modals) */
+@keyframes modal-fade-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+/* Apply animations to modal backdrop */
+.modal-backdrop-enter {
+  animation: backdrop-fade-in 200ms ease-out;
+}
+
+.modal-backdrop-exit {
+  animation: backdrop-fade-out 200ms ease-in;
+}
+
+/* Apply animations to side panel modals */
+.modal-panel-enter {
+  animation: modal-slide-in-right 300ms ease-out;
+}
+
+.modal-panel-exit {
+  animation: modal-slide-out-right 300ms ease-in;
+}
+
+/* Apply animations to center modals */
+.modal-center-enter {
+  animation: modal-fade-in 200ms ease-out;
+}
+
+.modal-center-exit {
+  animation: modal-fade-out 200ms ease-in;
+}
+
+/* ============================================================================
+ * Cart Item Slide Animations
+ * ============================================================================ */
+
+/* Cart item slide in from right */
+@keyframes cart-item-slide-in {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Cart item slide out to left */
+@keyframes cart-item-slide-out {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+}
+
+/* Cart item fade in (for initial load) */
+@keyframes cart-item-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Apply animation to cart items */
+.cart-item-enter {
+  animation: cart-item-slide-in 250ms ease-out;
+}
+
+.cart-item-exit {
+  animation: cart-item-slide-out 200ms ease-in;
+}
+
+.cart-item-initial {
+  animation: cart-item-fade-in 150ms ease-out;
+}
+
+/* ============================================================================
+ * Success Message Fade In/Out
+ * ============================================================================ */
+
+/* Success message fade in */
+@keyframes success-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Success message fade out */
+@keyframes success-fade-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+/* Apply animation to success messages */
+.success-message-fade-in {
+  animation: success-fade-in 200ms ease-out;
+}
+
+.success-message-fade-out {
+  animation: success-fade-out 200ms ease-in;
+}
+
+/* ============================================================================
+ * Error Message Fade In/Out
+ * ============================================================================ */
+
+/* Error message shake and fade in */
+@keyframes error-shake-in {
+  0% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Error message fade out */
+@keyframes error-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Apply animation to error messages */
+.error-message-shake-in {
+  animation: error-shake-in 300ms ease-out;
+}
+
+.error-message-fade-out {
+  animation: error-fade-out 200ms ease-in;
+}
+
+/* ============================================================================
+ * Loading Spinner Animation
+ * ============================================================================ */
+
+@keyframes spinner-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  animation: spinner-rotate 1s linear infinite;
+}
+
+/* ============================================================================
+ * Reduced Motion Support
+ * ============================================================================ */
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  /* Disable all animations */
+  .modal-backdrop-enter,
+  .modal-backdrop-exit,
+  .modal-panel-enter,
+  .modal-panel-exit,
+  .modal-center-enter,
+  .modal-center-exit,
+  .cart-item-enter,
+  .cart-item-exit,
+  .cart-item-initial,
+  .success-message-fade-in,
+  .success-message-fade-out,
+  .error-message-shake-in,
+  .error-message-fade-out,
+  .spinner {
+    animation: none !important;
+  }
+
+  /* Instant transitions instead */
+  .modal-backdrop-enter,
+  .modal-panel-enter,
+  .modal-center-enter,
+  .cart-item-enter,
+  .cart-item-initial,
+  .success-message-fade-in,
+  .error-message-shake-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  .modal-backdrop-exit,
+  .modal-panel-exit,
+  .modal-center-exit,
+  .cart-item-exit,
+  .success-message-fade-out,
+  .error-message-fade-out {
+    opacity: 0;
+    transform: none;
+  }
+}
+
+/* ============================================================================
+ * Utility Classes for Smooth Transitions
+ * ============================================================================ */
+
+/* Smooth color transitions */
+.transition-colors-smooth {
+  transition: background-color 200ms ease-out, color 200ms ease-out, border-color 200ms ease-out;
+}
+
+/* Smooth opacity transitions */
+.transition-opacity-smooth {
+  transition: opacity 200ms ease-out;
+}
+
+/* Smooth transform transitions */
+.transition-transform-smooth {
+  transition: transform 200ms ease-out;
+}
+
+/* Smooth all transitions */
+.transition-all-smooth {
+  transition: all 200ms ease-out;
+}

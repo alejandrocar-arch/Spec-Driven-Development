@@ -1,0 +1,93 @@
+/**
+ * Button feedback styles
+ * Provides visual feedback for button interactions within 100ms
+ * Implements Requirement 11.7: Visual feedback for all button clicks within 100ms
+ */
+
+/* Button active state - immediate feedback */
+button:active:not(:disabled) {
+  transform: scale(0.98);
+  transition: transform 50ms ease-out;
+}
+
+/* Ripple effect container */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ripple animation */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.btn-ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%) scale(0);
+  pointer-events: none;
+}
+
+.btn-ripple:active::after {
+  animation: ripple 600ms ease-out;
+}
+
+/* Primary button feedback */
+.btn-primary:active:not(:disabled) {
+  background-color: rgba(37, 99, 235, 0.9); /* Darker blue */
+}
+
+/* Secondary button feedback */
+.btn-secondary:active:not(:disabled) {
+  background-color: rgba(107, 114, 128, 0.9); /* Darker gray */
+}
+
+/* Success button feedback */
+.btn-success:active:not(:disabled) {
+  background-color: rgba(21, 128, 61, 0.9); /* Darker green */
+}
+
+/* Danger button feedback */
+.btn-danger:active:not(:disabled) {
+  background-color: rgba(185, 28, 28, 0.9); /* Darker red */
+}
+
+/* Ensure transitions are fast for immediate feedback */
+button {
+  transition: transform 50ms ease-out, background-color 100ms ease-out, color 100ms ease-out;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  button:active:not(:disabled) {
+    transform: none;
+  }
+  
+  .btn-ripple::after {
+    animation: none;
+  }
+  
+  button {
+    transition: none;
+  }
+}
+
+/* Touch device optimization - larger active area */
+@media (hover: none) and (pointer: coarse) {
+  button:active:not(:disabled) {
+    transform: scale(0.96);
+  }
+}
