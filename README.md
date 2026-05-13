@@ -1,3 +1,10 @@
+
+
+<img width="1056" height="617" alt="image" src="https://github.com/user-attachments/assets/26bd4cf9-a60e-4d2c-93ce-d294395e136f" />
+
+
+
+
 # 🛒 Supermarket POS Frontend
 
 A modern, offline-first Point of Sale (POS) system built with React, TypeScript, and Zustand. Designed for supermarket checkout operations with full offline support, accessibility features, and real-time synchronization.
